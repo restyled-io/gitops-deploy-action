@@ -1,0 +1,38 @@
+description: gitops-deploy-action
+description: |
+  Commit a Parameter change in a separate gitops repository
+inputs:
+  token:
+    description: Personal access token with rights to the gitops repository
+    required: true
+  parameter-name:
+    description: Name of Parameter to set
+    required: true
+  parameter-value:
+    description: Value to set the Parameter to
+    required: true
+  committer-name:
+    description: Name to commit with
+    required: true
+  committer-email:
+    description: Email to commit with
+    required: true
+  repository:
+    description: Owner/name of gitops repisitory
+    required: true
+  stacks:
+    description: >
+      Stack files to update Parameters in. Newline separated paths or globs.
+    required: true
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  env:
+    GITHUB_TOKEN: ${{ inputs.token }}
+  args:
+    - ${{ inputs.parameter-name }}
+    - ${{ inputs.parameter-value }}
+    - ${{ inputs.committer-name }}
+    - ${{ inputs.committer-email }}
+    - ${{ inputs.repository }}
+    - ${{ inputs.stacks }}
