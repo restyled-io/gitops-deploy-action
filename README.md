@@ -13,7 +13,7 @@ TODO
   with:
     token: ${{ secrets.GITOPS_REPOSITORY_TOKEN }}
     parameter-name: SomeParameter
-    parameter-value: SameValue
+    parameter-value: SomeValue
     committer-name: Some Name
     committer-email: some@email.com
     repository: your/gitops-repo
