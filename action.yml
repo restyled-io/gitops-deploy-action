@@ -1,4 +1,4 @@
-description: gitops-deploy-action
+name: gitops-deploy-action
 description: |
   Commit a Parameter change in a separate gitops repository
 inputs:
