@@ -5,6 +5,7 @@
 #
 ###
 import argparse
+import sys
 from ruamel.yaml import YAML
 
 parser = argparse.ArgumentParser()
@@ -20,10 +21,16 @@ with open(args.path, "r") as h:
     contents = h.read()
 
 stack = yaml.load(contents)
+updated = False
 
 for parameter in stack.get("Parameters"):
     if parameter.get("Name") == args.name:
         parameter.insert(2, "Value", args.value)
+        updated = True
+
+if not updated:
+    print("No Parameter with Name {} found in {}".format(args.name, args.path), file=sys.stderr)
+    sys.exit(1)
 
 with open(args.path, "w") as h:
     yaml.dump(stack, h)

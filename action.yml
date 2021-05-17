@@ -24,6 +24,10 @@ inputs:
     description: >
       Stack files to update Parameters in. Newline separated paths or globs.
     required: true
+  push:
+    description: Actually push to gitops repository (1 or 0)
+    required: false
+    default: 1
 runs:
   using: 'docker'
   image: 'Dockerfile'
@@ -36,3 +40,4 @@ runs:
     - ${{ inputs.committer-email }}
     - ${{ inputs.repository }}
     - ${{ inputs.stacks }}
+    - ${{ inputs.push }}
