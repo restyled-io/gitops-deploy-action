@@ -17,8 +17,12 @@ args = parser.parse_args()
 yaml = YAML()
 yaml.indent(mapping=2, sequence=4, offset=2)
 
-with open(args.path, "r") as h:
-    contents = h.read()
+try:
+    with open(args.path, "r") as h:
+        contents = h.read()
+except FileNotFoundError:
+    print("The file {} does not exist".format(args.path), file=sys.stderr)
+    sys.exit(1)
 
 stack = yaml.load(contents)
 updated = False
