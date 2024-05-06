@@ -8,3 +8,8 @@ dependencies = ["ruamel.yaml"]
 
 [project.scripts]
 set-stack-parameter = "set_stack_parameter.cli:run"
+
+[tool.pytest.ini_options]
+addopts = [
+    "--import-mode=importlib",
+]
