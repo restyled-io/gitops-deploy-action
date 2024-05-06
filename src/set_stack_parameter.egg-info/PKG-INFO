@@ -1,7 +1,0 @@
-Metadata-Version: 2.1
-Name: set_stack_parameter
-Version: 0.0.1
-Summary: Update a parameters in a Stackctl Spec, preserving formatting
-Author-email: Pat Brisbin <prisbin@restyled.io>
-Requires-Python: >=3.8
-License-File: LICENSE
