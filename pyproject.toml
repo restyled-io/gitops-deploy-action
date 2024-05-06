@@ -1,0 +1,11 @@
+[project]
+name = "set_stack_parameter"
+version = "0.0.1"
+authors = [
+  { name="Pat Brisbin", email="prisbin@restyled.io" },
+]
+description = "Update a parameters in a Stackctl Spec, preserving formatting"
+requires-python = ">=3.8"
+
+[project.scripts]
+set-stack-parameter = "set_stack_parameter:cli"

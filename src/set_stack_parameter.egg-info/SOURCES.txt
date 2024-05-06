@@ -1,0 +1,10 @@
+LICENSE
+README.md
+pyproject.toml
+src/set_stack_parameter/__init__.py
+src/set_stack_parameter/cli.py
+src/set_stack_parameter.egg-info/PKG-INFO
+src/set_stack_parameter.egg-info/SOURCES.txt
+src/set_stack_parameter.egg-info/dependency_links.txt
+src/set_stack_parameter.egg-info/entry_points.txt
+src/set_stack_parameter.egg-info/top_level.txt
