@@ -1,2 +1,0 @@
-[console_scripts]
-set-stack-parameters = set_stack_parameter:cli
