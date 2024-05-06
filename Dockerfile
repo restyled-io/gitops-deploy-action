@@ -11,9 +11,8 @@ RUN \
 RUN mkdir /app
 WORKDIR /app
 
-COPY requirements.txt ./
-RUN pip install -r requirements.txt
-
-COPY bin/ /usr/bin/
+COPY pyproject.toml .
+COPY src ./src
+RUN pip install .
 COPY entrypoint.sh /entrypoint.sh
 ENTRYPOINT ["/entrypoint.sh"]
