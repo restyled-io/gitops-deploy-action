@@ -39,9 +39,7 @@ It errors when stacks are wrong
   >   "i/dont/*/*/exist" \
   >   0
   Cloning into '*'... (glob)
-  => RestylerImage=restyled/restyler:acb123 in i/dont/*/*/exist
   [Errno 2] No such file or directory: 'i/dont/*/*/exist'
-  No Parameters updated
   [1]
 
 It errors when Parameter is not found
@@ -55,7 +53,5 @@ It errors when Parameter is not found
   >   "cg-app/stacks/*/*/sites/blog.yaml" \
   >   0
   Cloning into '*'... (glob)
-  => RestylerImage=restyled/restyler:acb123 in cg-app/stacks/*/sites/blog.yaml (glob)
   No Parameter with Name RestylerImage found in cg-app/stacks/*/sites/blog.yaml (glob)
-  No Parameters updated
   [1]

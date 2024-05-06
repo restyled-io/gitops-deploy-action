@@ -10,7 +10,6 @@ committer_email=$4
 repository=$5
 glob=$6
 push=$7
-updated=0
 
 tmp=$(mktemp -d)
 git config --global user.name "$committer_name"
@@ -26,21 +25,15 @@ fi
 
 cd "$tmp"
 
-for stack in $glob; do
-  echo "=> $parameter_name=$parameter_value in $stack"
+# shellcheck disable=2086
+set-stack-parameter --name "$parameter_name" --value "$parameter_value" $glob
 
-  if set-stack-parameter "$stack" "$parameter_name" "$parameter_value"; then
-    git add "$stack"
-    updated=1
-  fi
-done
-
-if ((!updated)); then
-  echo "No Parameters updated"
+# shellcheck disable=2086
+if ! git commit --message "Automated update of $parameter_name" $glob; then
+  echo "No Parameters were updated"
   exit 1
 fi
 
-git commit --message "Automated update of $parameter_name"
 git show
 
 if ((push)); then
