@@ -1,5 +1,8 @@
 from ruamel.yaml import YAML
 
+yaml = YAML()
+yaml.indent(mapping=2, sequence=4, offset=2)
+
 
 class ParameterNotFound(Exception):
     def __init__(self, name, path):
@@ -7,28 +10,39 @@ class ParameterNotFound(Exception):
         super().__init__(message)
 
 
+def yaml_load(path):
+    with open(path, "r") as h:
+        contents = h.read()
+
+    return yaml.load(contents)
+
+
 def rewrite(spec, name, value):
-    updated = False
+    parameters = spec.get("Parameters")
 
-    for parameter in spec.get("Parameters"):
-        if parameter.get("Name") == name:
-            parameter.insert(2, "Value", value)
-            updated = True
+    if isinstance(parameters, dict):
+        # Using {Name: Value} syntax, just update it
 
-    if updated:
-        return spec
+        if parameters.get(name):
+            parameters.update({name: value})
+            spec.update({"Parameters": parameters})
+
+            return spec
+
+    else:
+        # Using [{Name:,Value:}] syntax, find and update the correct element
+
+        for parameter in parameters:
+            if parameter.get("Name") == name:
+                parameter.insert(2, "Value", value)
+
+                return spec
 
     return None
 
 
 def main(path, name, value):
-    with open(path, "r") as h:
-        contents = h.read()
-
-    yaml = YAML()
-    yaml.indent(mapping=2, sequence=4, offset=2)
-    spec = yaml.load(contents)
-    spec = rewrite(spec, name, value)
+    spec = rewrite(yaml_load(path), name, value)
 
     if not spec:
         raise ParameterNotFound(name, path)
