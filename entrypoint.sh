@@ -2,7 +2,6 @@
 set -euo pipefail
 shopt -s extglob
 shopt -s globstar
-shopt -s nullglob
 
 parameter_name=$1
 parameter_value=$2
